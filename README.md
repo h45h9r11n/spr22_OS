@@ -9,8 +9,8 @@
 -	 Count the number of processes running on your system by any user:
    `ps aux | wc –l` 
 -	Windows using PowerShell, the following two commands will get that information:
-+ Number of processes running: `(Get-Process).Count` 
-+ Number of threads running: `(Get-Process|Select-Object -ExpandProperty Threads).Count`
+    + Number of processes running: `(Get-Process).Count` 
+    + Number of threads running: `(Get-Process|Select-Object -ExpandProperty Threads).Count`
 -	Routine, Required header
   `system, <process.h> or <stdlib.h>`
 -	Write data to text file in powershell `Add-Content -Path `
