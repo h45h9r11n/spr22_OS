@@ -35,3 +35,16 @@
    + `memFree` The amount of physical RAM, in kilobytes, left unused by the system.
    + `memAvailable` An estimate of how much memory is available for starting new applications, without swapping. Calculated from MemFree, SReclaimable, the size of the file LRU lists, and the low watermarks in each zone. The estimate takes into account that the system needs some page cache to function well, and that not all reclaimable slab will be reclaimable, due to items being in use. The impact of those factors will vary from system to system.
 
+## Лаб 3.
+    Простой вариант
+        Найти и скомпилировать программу linpack для оценки производительности компьютера (Flops) и протестировать ее при различных режимах работы ОС:
+        1.	С различными приоритетами задачи в планировщике
+        2.	С наличием и отсутствием привязки к процессору
+        3.	Провести несколько тестов, сравнить результаты по 3 сигма или другим статистическим критериям
+    Усиленный вариант
+        То же самое, плюс изменить параметры на уровне ядра (выбрать одно): 
+        1.	Запретить выполнение всех потоков кроме того, который тестируется (путем запрета прерываний) (cli sti)
+        2.	Найти другие планировщики процессов для Linux и сравнить результаты работы вычислительной задачи на них
+        3.	Повлиять на настройки имеющегося планировщика
+        4.	Вмешаться в работу планировщика на уровне ядра
+
