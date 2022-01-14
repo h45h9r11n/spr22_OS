@@ -53,3 +53,4 @@
     Модифицировать существующий планировщик на уровне ядра
     
 https://xakep.ru/2014/05/11/input-out-linux-planning/
+https://blog.programs74.ru/how-to-enable-mq-deadline-or-bfq-in-ubuntu/
