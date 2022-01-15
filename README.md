@@ -54,3 +54,5 @@
     
 https://xakep.ru/2014/05/11/input-out-linux-planning/
 https://blog.programs74.ru/how-to-enable-mq-deadline-or-bfq-in-ubuntu/
+https://www.phoronix.com/scan.php?page=article&item=linux-56-nvme&num=4
+https://lwn.net/Articles/725238/
