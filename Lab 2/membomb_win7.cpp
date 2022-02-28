@@ -3,7 +3,11 @@
 #include <cstring>
 #include <unistd.h>
 using namespace std;
+
 int main(){
+    SYSTEM_INFO si;
+	GetSystemInfo(&si);
+	printf("The page size for this system is %u bytes.\n", si.dwPageSize);
     int size = 4096*1024;
     void *ptr;
     while (true){
