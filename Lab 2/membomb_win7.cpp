@@ -4,15 +4,21 @@
 #include <unistd.h>
 using namespace std;
 
-int main(){
+int main() {
+
+    MEMORYSTATUSEX status;
+    status.dwLength = sizeof(status);
+    GlobalMemoryStatusEx(&status);
+    total = status.ullTotalPhys;
+
     SYSTEM_INFO si;
-	GetSystemInfo(&si);
-	printf("The page size for this system is %u bytes.\n", si.dwPageSize);
-    int size = 4096*1024;
-    void *ptr;
-    while (true){
-        LPVOID ptr = VirtualAlloc(NULL,size,MEM_RESERVE,PAGE_READWRITE); //reserving memory
-        ptr = VirtualAlloc(ptr,size,MEM_COMMIT,PAGE_READWRITE); //commiting memory
+    GetSystemInfo(&si);
+    int psize = si.dwPageSize;
+    int size = (int)total / psize;
+    void* ptr;
+    for (int i = 0; i < psize, i++) {
+        LPVOID ptr = VirtualAlloc(NULL, size, MEM_RESERVE, PAGE_READWRITE);
+        ptr = VirtualAlloc(ptr, size, MEM_COMMIT, PAGE_READWRITE);
         memset(ptr, '0', size);
     }
     return 0;
