@@ -4,11 +4,13 @@
 #include <unistd.h>
 
 int main(){
-    int size = 4096*1024;
+
+    long page_size = sysconf(_SC_PAGE_SIZE);
+    page_size *= 1024;
     void *p;
-    while (true){
-        p = mmap(NULL, size, PROT_WRITE|PROT_READ, MAP_PRIVATE|MAP_ANONYMOUS, 0, 0);
-        memset(p, '0', size);
+    while (1){
+        p = mmap(NULL, page_size, PROT_WRITE|PROT_READ, MAP_PRIVATE|MAP_ANONYMOUS, 0, 0);
+        memset(p, 0, page_size);
         system("grep MemAvailable /proc/meminfo|awk -F ':' '{print $2}'>> memavail.txt");
     }
     return 0;
