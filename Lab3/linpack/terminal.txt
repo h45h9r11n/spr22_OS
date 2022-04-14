@@ -1,0 +1,150 @@
+hanhnguyen26@yuety25:~/Documents/GitHub/OS-spring2022/Lab 3/linpack$ sudo sysctl -A | grep "sched" | grep -v "domain"
+[sudo] password for hanhnguyen26: 
+kernel.sched_autogroup_enabled = 1
+kernel.sched_cfs_bandwidth_slice_us = 5000
+kernel.sched_child_runs_first = 0
+kernel.sched_deadline_period_max_us = 4194304
+kernel.sched_deadline_period_min_us = 100
+kernel.sched_energy_aware = 1
+kernel.sched_rr_timeslice_ms = 100
+kernel.sched_rt_period_us = 1000000
+kernel.sched_rt_runtime_us = 950000
+kernel.sched_schedstats = 0
+kernel.sched_util_clamp_max = 1024
+kernel.sched_util_clamp_min = 1024
+kernel.sched_util_clamp_min_rt_default = 1024
+hanhnguyen26@yuety25:~/Documents/GitHub/OS-spring2022/Lab 3/linpack$ ./linpack
+Memory required:  315K.
+
+
+LINPACK benchmark, Double precision.
+Machine precision:  15 digits.
+Array size 200 X 200.
+Average rolled and unrolled performance:
+
+    Reps Time(s) DGEFA   DGESL  OVERHEAD    KFLOPS
+----------------------------------------------------
+    2048   0.57  71.78%   2.98%  25.24%  6579550.257
+    4096   1.17  71.85%   3.14%  25.01%  6418038.563
+    8192   2.28  71.72%   2.94%  25.34%  6620908.282
+   16384   4.55  71.69%   2.94%  25.38%  6627074.309
+   32768   9.10  71.70%   2.94%  25.36%  6625950.230
+   65536  18.20  71.69%   2.94%  25.37%  6627017.705
+
+hanhnguyen26@yuety25:~/Documents/GitHub/OS-spring2022/Lab 3/linpack$ sudo sysctl kernel.sched_enery_awake=0
+sysctl: cannot stat /proc/sys/kernel/sched_enery_awake: No such file or directory
+hanhnguyen26@yuety25:~/Documents/GitHub/OS-spring2022/Lab 3/linpack$ sudo sysctl kernel.sched_enery_aware=0
+sysctl: cannot stat /proc/sys/kernel/sched_enery_aware: No such file or directory
+hanhnguyen26@yuety25:~/Documents/GitHub/OS-spring2022/Lab 3/linpack$ sudo sysctl kernel.sched_energy_aware=0
+kernel.sched_energy_aware = 0
+hanhnguyen26@yuety25:~/Documents/GitHub/OS-spring2022/Lab 3/linpack$ ./linpack
+Memory required:  315K.
+
+
+LINPACK benchmark, Double precision.
+Machine precision:  15 digits.
+Array size 200 X 200.
+Average rolled and unrolled performance:
+
+    Reps Time(s) DGEFA   DGESL  OVERHEAD    KFLOPS
+----------------------------------------------------
+    2048   0.57  71.69%   2.91%  25.40%  6634742.254
+    4096   1.13  71.69%   2.91%  25.40%  6643659.644
+    8192   2.27  71.72%   2.91%  25.37%  6638054.093
+   16384   4.55  71.75%   2.92%  25.33%  6619342.279
+   32768   9.08  71.74%   2.92%  25.34%  6635674.598
+   65536  18.17  71.71%   2.91%  25.37%  6638537.836
+
+hanhnguyen26@yuety25:~/Documents/GitHub/OS-spring2022/Lab 3/linpack$ ./linpack
+Memory required:  315K.
+
+
+LINPACK benchmark, Double precision.
+Machine precision:  15 digits.
+Array size 200 X 200.
+Average rolled and unrolled performance:
+
+    Reps Time(s) DGEFA   DGESL  OVERHEAD    KFLOPS
+----------------------------------------------------
+    2048   0.57  71.92%   2.91%  25.18%  6591361.462
+    4096   1.14  71.89%   2.92%  25.20%  6588134.618
+    8192   2.28  71.88%   2.92%  25.20%  6589118.548
+   16384   4.56  71.87%   2.90%  25.23%  6592622.565
+   32768   9.13  71.86%   2.90%  25.23%  6593043.684
+   65536  18.26  71.87%   2.90%  25.23%  6593977.388
+
+hanhnguyen26@yuety25:~/Documents/GitHub/OS-spring2022/Lab 3/linpack$ ./linpack
+Memory required:  315K.
+
+
+LINPACK benchmark, Double precision.
+Machine precision:  15 digits.
+Array size 200 X 200.
+Average rolled and unrolled performance:
+
+    Reps Time(s) DGEFA   DGESL  OVERHEAD    KFLOPS
+----------------------------------------------------
+    2048   0.59  72.64%   2.90%  24.46%  6300498.573
+    4096   1.18  72.64%   2.91%  24.45%  6293435.487
+    8192   2.37  72.59%   2.90%  24.52%  6299965.823
+   16384   4.73  72.63%   2.90%  24.47%  6299692.426
+   32768   9.46  72.60%   2.89%  24.51%  6303251.084
+   65536  18.91  72.61%   2.89%  24.50%  6304596.002
+
+hanhnguyen26@yuety25:~/Documents/GitHub/OS-spring2022/Lab 3/linpack$ ./linpack
+Memory required:  315K.
+
+
+LINPACK benchmark, Double precision.
+Machine precision:  15 digits.
+Array size 200 X 200.
+Average rolled and unrolled performance:
+
+    Reps Time(s) DGEFA   DGESL  OVERHEAD    KFLOPS
+----------------------------------------------------
+    2048   0.57  71.75%   2.92%  25.33%  6601355.358
+    4096   1.14  71.72%   2.93%  25.35%  6600681.443
+    8192   2.28  71.79%   2.93%  25.29%  6603854.693
+   16384   4.56  71.78%   2.93%  25.29%  6604405.188
+   32768   9.12  71.72%   2.93%  25.35%  6608229.204
+   65536  18.24  71.77%   2.92%  25.31%  6605789.101
+
+hanhnguyen26@yuety25:~/Documents/GitHub/OS-spring2022/Lab 3/linpack$ ./linpack
+Memory required:  315K.
+
+
+LINPACK benchmark, Double precision.
+Machine precision:  15 digits.
+Array size 200 X 200.
+Average rolled and unrolled performance:
+
+    Reps Time(s) DGEFA   DGESL  OVERHEAD    KFLOPS
+----------------------------------------------------
+    2048   0.58  71.82%   3.00%  25.18%  6523694.876
+    4096   1.15  71.67%   2.99%  25.34%  6523346.871
+    8192   2.30  71.79%   3.00%  25.22%  6527589.773
+   16384   4.61  71.81%   3.00%  25.19%  6527603.029
+   32768   9.22  71.82%   3.01%  25.17%  6523426.303
+   65536  18.44  71.78%   3.00%  25.23%  6527310.465
+
+hanhnguyen26@yuety25:~/Documents/GitHub/OS-spring2022/Lab 3/linpack$ sudo sysctl kernel.sched_energy_aware=1
+kernel.sched_energy_aware = 1
+hanhnguyen26@yuety25:~/Documents/GitHub/OS-spring2022/Lab 3/linpack$ ./linpack
+Memory required:  315K.
+
+
+LINPACK benchmark, Double precision.
+Machine precision:  15 digits.
+Array size 200 X 200.
+Average rolled and unrolled performance:
+
+    Reps Time(s) DGEFA   DGESL  OVERHEAD    KFLOPS
+----------------------------------------------------
+    2048   0.57  71.83%   2.93%  25.24%  6581074.388
+    4096   1.15  71.70%   2.94%  25.36%  6577403.816
+    8192   2.29  71.84%   2.93%  25.23%  6566589.096
+   16384   4.58  71.74%   2.94%  25.32%  6575958.258
+   32768   9.16  71.78%   2.94%  25.29%  6577284.610
+^[[   65536  18.30  71.76%   2.92%  25.32%  6584755.322
+
+hanhnguyen26@yuety25:~/Documents/GitHub/OS-spring2022/Lab 3/linpack$ 
