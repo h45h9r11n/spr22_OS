@@ -1,7 +1,7 @@
 #include <chrono>
 #include <fstream>
 #include <stdlib.h>   
-#include <linux/slab.h>
+#include <linux/kernel.h>
 
 void* callAlocator(int num, size_t size){
     if (num == 1){
@@ -13,7 +13,7 @@ void* callAlocator(int num, size_t size){
     }
 
     if (num == 3){
-        return kmalloc(size * sizeof(int), GFP_KERNEL);
+        return farmalloc(size * sizeof(int));
     }
     return NULL;
 }
@@ -29,7 +29,11 @@ void callFree(int num, void *ptr){
         return;
     }
 
-    
+    if (num == 3){
+        farfree(ptr);
+        return;
+    }
+
 }
 
 int main () {
@@ -37,22 +41,25 @@ int main () {
     resfile.open ("result.txt");
 
     std::chrono::steady_clock::time_point begin, end; 
-    for (int type = 1; type < 4; type ++){
-        for (size_t i = 0; i < 8589934592; i = i + 4096){
+    
+        
+    for (size_t i = 0; i < 1073741; i = i + 1024*4096){
+        resfile << i*4 << " ";
+        for (int type = 1; type <= 3; type ++){
+            
             begin = std::chrono::steady_clock::now();
             void* ptr = callAlocator(type, i);
             end = std::chrono::steady_clock::now();
             resfile << std::chrono::duration_cast<std::chrono::nanoseconds> (end - begin).count() << std::endl;
-
-            begin = std::chrono::steady_clock::now();
-            callFree(type, ptr);
-            end = std::chrono::steady_clock::now();
-            resfile << std::chrono::duration_cast<std::chrono::nanoseconds> (end - begin).count() << std::endl;
+            
+            // begin = std::chrono::steady_clock::now();
+            // callFree(type, ptr);
+            // end = std::chrono::steady_clock::now();
+            // resfile << std::chrono::duration_cast<std::chrono::nanoseconds> (end - begin).count() << " ";
         }
+        resfile << std::endl;
     }
-    
     
     resfile.close();
     return 0;
 }
-
