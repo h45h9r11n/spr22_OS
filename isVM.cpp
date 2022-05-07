@@ -1,10 +1,10 @@
 #include <iostream>
-#include <cpuid.h>
+#include <intrin.h>
 using namespace std;
 
 bool isHypervisor(){
 	int CPUInfo[4] = {-1};
-	__get_cpuid(CPUInfo,1);
+	__cpuid(CPUInfo,1);
 	if ((CPUInfo[2] >> 31) & 1){
 		return true;
 	}
