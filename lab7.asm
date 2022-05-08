@@ -13,16 +13,20 @@ section .data
         PM_l:  equ $-PM
 
 section .bss
-
+        buff resb 12
 section .text
 
 _start:
 
-xor     eax,eax                         ;get vendor ID
+xor eax, eax
+mov eax, 1
 cpuid
+;mov dword [buff+0], ebx     ; Fill the first four bytes
+;mov dword [buff+4], edx     ; Fill the second four bytes
+;mov dword [buff+8], ecx     ; Fill the third four bytes
 bt ecx, 0x1f
 jc .VM 
-jmp .PM
+jnc .PM
 
 .VM:
         mov     edx, VM_l     ; Arg three: the length of the string
@@ -37,6 +41,6 @@ jmp .PM
         mov     eax, 4          ; Syscall number, in this case the write(2) syscall: 
         int     0x80            ; Interrupt 0x80        
 
-        mov     ebx, 0          ; Arg one: the status
-        mov     eax, 1          ; Syscall number:
-        int     0x80
+mov     ebx, 0          ; Arg one: the status
+mov     eax, 1          ; Syscall number:
+int     0x80
