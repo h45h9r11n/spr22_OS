@@ -20,13 +20,9 @@ _start:
 
 xor     eax,eax                         ;get vendor ID
 cpuid
-;mov edx ecx
-;mov cl 31 
-shr ecx, 31
-and ecx, 1
-cmp ecx, 1
-jnz .VM 
-
+bt ecx, 0x1f
+jc .VM 
+jmp .PM
 
 .VM:
         mov     edx, VM_l     ; Arg three: the length of the string
